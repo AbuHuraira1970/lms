@@ -6,12 +6,14 @@ const User = require("./../model/User")
 exports.clerkWebHooks = async (req,res)=>{
     try {
         const wHook = new WebHook(process.env.CLERK_WEBHOOK_SECRET)
-        await wHook.verify(JSON.stringify(req.body),{
+        const payload = req.body.toString()
+        await wHook.verify(payload,{
             "svix-id": req.headers["svix-id"],
             "svix-timestamp": req.headers["svix-timestamp"],
             "svix-signature": req.headers["svix-signature"]
         })
-        const {data,type} = req.body
+        const {data,type} = JSON.parse(payload);
+        console.log(data)
         switch (type){
             case 'user.created':
                 const userData = {
@@ -25,7 +27,7 @@ exports.clerkWebHooks = async (req,res)=>{
             break
             case 'user.updated':
                 const uData = {
-                    email: data.email_address[0].email_address,
+                    email: data.email_addresses[0].email_address,
                     name: data.first_name + ' ' + data.last_name,
                     imageUrl: data.image_url 
                 }

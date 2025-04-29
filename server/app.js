@@ -4,8 +4,9 @@ const WebHookController = require("../server/controller/webHooks")
 const app = express()
 
 app.use(cors())
-app.use(express.json())
 
+app.post('/clerk',express.raw({ type: 'application/json' }),WebHookController.clerkWebHooks)
+app.use(express.json())
 
 app.get("/",(req,res)=>{
     res.status(200).json({
@@ -14,6 +15,5 @@ app.get("/",(req,res)=>{
 })
 
 
-app.post('/clerk',WebHookController.clerkWebHooks)
 
 module.exports = app
