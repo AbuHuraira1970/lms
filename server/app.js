@@ -7,11 +7,11 @@ app.use(cors())
 app.use(express.json())
 
 
-// app.get("/",(req,res)=>{
-//     res.status(200).json({
-//         status: "success"
-//     })
-// })
+app.get("/",(req,res)=>{
+    res.status(200).json({
+        status: "success"
+    })
+})
 
 
 app.post('/clerk',WebHookController.clerkWebHooks)
