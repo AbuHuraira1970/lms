@@ -3,6 +3,6 @@ const educatorController = require("../controller/educatorController")
 const router = express.Router()
 
 router.route("/update-role")
-.post(educatorController.updateRoleEducator)
+.get(educatorController.updateRoleEducator)
 
 module.exports = router
