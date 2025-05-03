@@ -2,6 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const WebHookController = require("../server/controller/webHooks")
 const educatorRouter = require("./routes/educatorRoute")
+const courseRouter = require("./routes/courseRoute")
 const { clerkMiddleware } = require("@clerk/express")
 const app = express()
 
@@ -28,6 +29,7 @@ app.use((req, res, next) => {
 
 app.post('/clerk', WebHookController.clerkWebHooks)
 app.use("/api/educator", educatorRouter)
+app.use("/api/course", courseRouter)
 
 app.get("/", (req, res) => {
     res.status(200).json({
