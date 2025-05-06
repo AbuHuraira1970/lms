@@ -1,6 +1,6 @@
 const { Webhook } = require("svix")
 const User = require("./../model/User")
-const { default: Stripe } = require("stripe")
+const Stripe = require("stripe")
 const Purchase = require("../model/Purchase")
 const Course = require("../model/Course")
 
