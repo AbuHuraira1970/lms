@@ -3,6 +3,7 @@ const cors = require("cors")
 const WebHookController = require("../server/controller/webHooks")
 const educatorRouter = require("./routes/educatorRoute")
 const courseRouter = require("./routes/courseRoute")
+const userRouter = require("./routes/userRoute")
 const { clerkMiddleware } = require("@clerk/express")
 const app = express()
 
@@ -21,6 +22,7 @@ app.use(clerkMiddleware({
     publishableKey: process.env.CLERK_PUBLISHABLE_KEY
 }));
 
+
 app.use((req, res, next) => {
     console.log('Headers:', req.headers);
     console.log('Auth object:', req.auth);
@@ -30,6 +32,7 @@ app.use((req, res, next) => {
 app.post('/clerk', WebHookController.clerkWebHooks)
 app.use("/api/educator", educatorRouter)
 app.use("/api/course", courseRouter)
+app.use("/api/user", userRouter)
 
 app.get("/", (req, res) => {
     res.status(200).json({
