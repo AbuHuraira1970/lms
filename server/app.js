@@ -15,7 +15,6 @@ app.use(cors({
 }));
 
 
-app.use(express.json())
 
 app.use(clerkMiddleware({
     secretKey: process.env.CLERK_SECRET_KEY,
@@ -27,13 +26,18 @@ app.use((req, res, next) => {
     console.log('Headers:', req.headers);
     console.log('Auth object:', req.auth);
     next();
-});
+})
 
+
+app.post("/stripe",express.raw({type: 'application/json'}),(req, res, next) => {
+    console.log("✅ Stripe route was hit");
+    next();
+  },WebHookController.stripeWebhooks)
+app.use(express.json())
 app.post('/clerk', WebHookController.clerkWebHooks)
 app.use("/api/educator", educatorRouter)
 app.use("/api/course", courseRouter)
 app.use("/api/user", userRouter)
-app.post("/stripe",express.raw({type: 'application/json'}),WebHookController.stripeWebhooks)
 
 app.get("/", (req, res) => {
     res.status(200).json({
