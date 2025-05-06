@@ -61,7 +61,7 @@ exports.stripeWebhooks = async (req, res) => {
         event = Stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
 
         switch (event.type) {
-            case 'payment_intent.succeeded':
+            case 'payment_intent.succeeded':{
                 console.log("payment success hit!")
                 const paymentIntent = event.data.object;
                 const paymentIntentId = paymentIntent.id
@@ -87,6 +87,7 @@ exports.stripeWebhooks = async (req, res) => {
 
 
                 break;
+            }
             case 'payment_intent.payment_failed': {
 
                 const paymentIntent = event.data.object;
@@ -101,8 +102,8 @@ exports.stripeWebhooks = async (req, res) => {
                 const purchaseData = await Purchase.findById(purchaseId)
                 purchaseData.status = 'failed'
                 await purchaseData.save()
-            }
                 break;
+            }
             // ... handle other event types
             default:
                 console.log(`Unhandled event type ${event.type}`);
