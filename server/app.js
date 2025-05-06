@@ -33,6 +33,7 @@ app.post('/clerk', WebHookController.clerkWebHooks)
 app.use("/api/educator", educatorRouter)
 app.use("/api/course", courseRouter)
 app.use("/api/user", userRouter)
+app.post("/stripe",express.raw({type: 'application/json'}),WebHookController.stripeWebhooks)
 
 app.get("/", (req, res) => {
     res.status(200).json({
