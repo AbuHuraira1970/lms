@@ -1,4 +1,5 @@
-const { clerkClient, User } = require("@clerk/express");
+const { clerkClient } = require("@clerk/express");
+const User = require("../model/User")
 const Course = require("../model/Course");
 const Purchase = require("../model/Purchase");
 const cloudinary = require('cloudinary').v2

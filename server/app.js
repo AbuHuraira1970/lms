@@ -33,6 +33,7 @@ app.post("/stripe",express.raw({type: 'application/json'}),(req, res, next) => {
     console.log("✅ Stripe route was hit");
     next();
   },WebHookController.stripeWebhooks)
+  
 app.use(express.json())
 app.post('/clerk', WebHookController.clerkWebHooks)
 app.use("/api/educator", educatorRouter)
