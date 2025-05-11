@@ -7,7 +7,7 @@ router.route("/enrolled-courses").get(userController.userEnrolledCourses)
 router.route("/purchase").post(userController.purchaseCourse)
 
 router.route("/update-course-progress").post(userController.updateUserCourseProgress)
-router.route("/get-course-progress").get(userController.getUserCourseProgress)
+router.route("/get-course-progress").post(userController.getUserCourseProgress)
 router.route("/add-rating").post(userController.addUserRating)
 
 

@@ -22,11 +22,11 @@ app.use(clerkMiddleware({
 }));
 
 
-app.use((req, res, next) => {
-    console.log('Headers:', req.headers);
-    console.log('Auth object:', req.auth);
-    next();
-})
+// app.use((req, res, next) => {
+//     console.log('Headers:', req.headers);
+//     console.log('Auth object:', req.auth);
+//     next();
+// })
 
 
 app.post("/stripe",express.raw({type: 'application/json'}),(req, res, next) => {

@@ -11,7 +11,7 @@ exports.updateRoleEducator = async (req, res) => {
         if (!req.auth || !req.auth.userId) {
             return res.status(401).json({
                 status: "fail",
-                msg: "User not authenticated"
+                message: "User not authenticated"
             });
         }
 
@@ -29,7 +29,7 @@ exports.updateRoleEducator = async (req, res) => {
     } catch (error) {
         res.status(404).json({
             status: "fail",
-            msg: error.message
+            message: error.message
         })
     }
 }
@@ -51,6 +51,7 @@ exports.addCourse = async (req, res) => {
         }
 
 
+        console.log(courseData,imageFile)
         const parsedCourseData = await JSON.parse(courseData)
         parsedCourseData.educator = educatorId
         const newCourse = await Course.create(parsedCourseData)
@@ -66,7 +67,7 @@ exports.addCourse = async (req, res) => {
     } catch (error) {
         res.status(404).json({
             status: "fail",
-            msg: error.message
+            message: error.message
         })
     }
 }
@@ -82,7 +83,7 @@ exports.getEducatorCourses = async(req,res)=>{
     } catch (error) {
         res.status(404).json({
             status: "fail",
-            msg: error.message
+            message: error.message
         })
     }
 }
@@ -126,7 +127,7 @@ exports.educatorDashbordData = async (req,res) =>{
     } catch (error) {
         res.status(404).json({
             status: "fail",
-            msg: error.message
+            message: error.message
         })
     }
 }
@@ -153,7 +154,7 @@ exports.getEnrolledstudentsData = async(req,res)=>{
     } catch (error) {
         res.status(404).json({
             status: "fail",
-            msg: error.message
+            message: error.message
         })
     }
 }

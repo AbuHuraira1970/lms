@@ -21,7 +21,7 @@ exports.getUserData = async (req, res) => {
     } catch (error) {
         res.status(404).json({
             status: "fail",
-            msg: error.message
+            message: error.message
         })
     }
 }
@@ -39,7 +39,7 @@ exports.userEnrolledCourses = async (req, res) => {
     } catch (error) {
         res.status(404).json({
             status: "fail",
-            msg: error.message
+            message: error.message
         })
     }
 }
@@ -232,7 +232,7 @@ exports.addUserRating = async (req, res) => {
 
         res.status(200).json({
             status: "success",
-            message: "Rating added"
+            message: "Rating Added"
         })
 
     } catch (error) {
