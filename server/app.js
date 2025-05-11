@@ -8,9 +8,22 @@ const { clerkMiddleware } = require("@clerk/express")
 const app = express()
 
 // app.use(cors())
-app.use(cors());
-
-
+const allowedOrigins = [
+    'http://localhost:5173', // Local dev
+    'https://lms-frontend-nine-amber.vercel.app' // Deployed frontend
+  ]
+  
+  app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    },
+    credentials: true
+  }))
+  
 
 app.use(clerkMiddleware({
     secretKey: process.env.CLERK_SECRET_KEY,
