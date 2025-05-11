@@ -11,7 +11,7 @@ import Dashboard from './pages/educators/Dashboard'
 import AddCourse from './pages/educators/AddCourse'
 import MyCourses from './pages/educators/MyCourses'
 import StudentEnrollemnt from './pages/educators/StudentEnrollemnt'
-import Navbar from './components/students/navbar'
+import Navbar from './components/students/Navbar'
 import "quill/dist/quill.snow.css";
 import { ToastContainer } from 'react-toastify';
 
