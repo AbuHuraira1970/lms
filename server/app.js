@@ -11,19 +11,19 @@ const app = express()
 const allowedOrigins = [
     'http://localhost:5173', // Local dev
     'https://lms-frontend-nine-amber.vercel.app' // Deployed frontend
-  ]
-  
-  app.use(cors({
+]
+
+app.use(cors({
     origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true)
-      } else {
-        callback(new Error('Not allowed by CORS'))
-      }
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
     },
     credentials: true
-  }))
-  
+}))
+
 
 app.use(clerkMiddleware({
     secretKey: process.env.CLERK_SECRET_KEY,
@@ -38,11 +38,11 @@ app.use(clerkMiddleware({
 // })
 
 
-app.post("/stripe",express.raw({type: 'application/json'}),(req, res, next) => {
+app.post("/stripe", express.raw({ type: 'application/json' }), (req, res, next) => {
     console.log("✅ Stripe route was hit");
     next();
-  },WebHookController.stripeWebhooks)
-  
+}, WebHookController.stripeWebhooks)
+
 app.use(express.json())
 app.post('/clerk', WebHookController.clerkWebHooks)
 app.use("/api/educator", educatorRouter)
