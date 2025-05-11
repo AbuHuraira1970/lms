@@ -8,11 +8,7 @@ const { clerkMiddleware } = require("@clerk/express")
 const app = express()
 
 // app.use(cors())
-app.use(cors({
-    origin: 'http://localhost:5173', // Your frontend URL
-    credentials: true,
-    allowedHeaders: ['Authorization', 'Content-Type'],
-}));
+app.use(cors());
 
 
 
